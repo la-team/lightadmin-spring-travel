@@ -24,9 +24,9 @@ public class HotelAdministration {
 	public static ScopesConfigurationUnit scopes( final ScopesConfigurationUnitBuilder scopeBuilder ) {
 		return scopeBuilder
 			.scope( "All", all() ).defaultScope()
-			.scope( "Low-cost bookings", filter( lowCostHotels() ) )
-			.scope( "Regular bookings", filter( regularHotels() ) )
-			.scope( "Luxury bookings", filter( luxuryHotels() ) ).build();
+			.scope( "Low-cost", filter( lowCostHotels() ) )
+			.scope( "Regular", filter( regularHotels() ) )
+			.scope( "Luxury", filter( luxuryHotels() ) ).build();
 	}
 
 	public static DomainTypePredicate<Hotel> lowCostHotels() {
