@@ -1,6 +1,8 @@
 package org.springframework.webflow.samples.booking.config;
 
 import org.lightadmin.core.config.annotation.Administration;
+import org.lightadmin.core.config.domain.configuration.EntityMetadataConfigurationUnit;
+import org.lightadmin.core.config.domain.configuration.EntityMetadataConfigurationUnitBuilder;
 import org.lightadmin.core.config.domain.filter.FiltersConfigurationUnit;
 import org.lightadmin.core.config.domain.filter.FiltersConfigurationUnitBuilder;
 import org.lightadmin.core.config.domain.scope.DomainTypePredicate;
@@ -13,6 +15,10 @@ import static org.lightadmin.core.config.domain.scope.ScopeMetadataUtils.filter;
 
 @Administration( Hotel.class )
 public class HotelAdministration {
+
+	public static EntityMetadataConfigurationUnit configuration( EntityMetadataConfigurationUnitBuilder configurationBuilder ) {
+		return configurationBuilder.nameField( "name" ).build();
+	}
 
 	public static FiltersConfigurationUnit filters( final FiltersConfigurationUnitBuilder filterBuilder ) {
 		return filterBuilder
