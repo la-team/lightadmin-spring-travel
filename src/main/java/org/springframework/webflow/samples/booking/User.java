@@ -1,5 +1,7 @@
 package org.springframework.webflow.samples.booking;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,6 +15,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	@Id
+	@NotBlank
     private String username;
 
     private String password;
