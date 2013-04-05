@@ -56,4 +56,24 @@ public class User implements Serializable {
     public String toString() {
 	return "User(" + username + ")";
     }
+
+	@Override
+	public boolean equals( Object obj ) {
+		if ( this == obj ) {
+			return true;
+		}
+
+		if ( this.username == null || obj == null || !( this.getClass().equals( obj.getClass() ) ) ) {
+			return false;
+		}
+
+		User that = ( User ) obj;
+
+		return this.username.equals( that.getUsername() );
+	}
+
+	@Override
+	public int hashCode() {
+		return username == null ? 0 : username.hashCode();
+	}
 }
