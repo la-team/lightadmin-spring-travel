@@ -13,12 +13,6 @@
 		<param-value>org.springframework.webflow.samples.booking.config</param-value>
 	</context-param>
 
-	<context-param>
-		<param-name>light:administration:security</param-name>
-		<param-value>false</param-value>
-	</context-param>
-
-
 	<!-- The master configuration file for this Spring web application -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
