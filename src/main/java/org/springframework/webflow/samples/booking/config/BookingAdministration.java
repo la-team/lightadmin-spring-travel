@@ -7,7 +7,6 @@ import org.lightadmin.core.config.domain.configuration.EntityMetadataConfigurati
 import org.lightadmin.core.config.domain.configuration.support.EntityNameExtractor;
 import org.lightadmin.core.config.domain.filter.FiltersConfigurationUnit;
 import org.lightadmin.core.config.domain.filter.FiltersConfigurationUnitBuilder;
-import org.lightadmin.core.config.domain.renderer.FieldValueRenderer;
 import org.lightadmin.core.config.domain.scope.DomainTypePredicate;
 import org.lightadmin.core.config.domain.scope.DomainTypeSpecification;
 import org.lightadmin.core.config.domain.scope.ScopesConfigurationUnit;
@@ -50,10 +49,11 @@ public class BookingAdministration {
 			.field( "user" ).caption( "Customer" )
 			.field( "hotel" ).caption( "Hotel" )
 			.field( "checkinDate" ).caption( "Check-In Date" )
-			.renderable( nightsValueRenderer() ).caption( "Nights" )
+			.dynamic( "nights" ).caption( "Nights" )
 			.field( "smoking" ).caption( "Smoking" )
 			.field( "beds" ).caption( "Beds" )
-			.renderable( totalValueRenderer() ).caption( "Total" )
+			.dynamic( "total" ).caption( "Total" )
+			.dynamic( "description" ).caption( "Description" )
 			.build();
 	}
 
@@ -80,24 +80,6 @@ public class BookingAdministration {
 			@Override
 			public String apply( final Booking booking ) {
 				return format( "Booking %s for $%d", booking.getHotel().getName(), booking.getTotal().intValue() );
-			}
-		};
-	}
-
-	public static FieldValueRenderer<Booking> nightsValueRenderer() {
-		return new FieldValueRenderer<Booking>() {
-			@Override
-			public String apply( final Booking booking ) {
-				return String.valueOf( booking.getNights() );
-			}
-		};
-	}
-
-	public static FieldValueRenderer<Booking> totalValueRenderer() {
-		return new FieldValueRenderer<Booking>() {
-			@Override
-			public String apply( final Booking booking ) {
-				return String.valueOf( booking.getTotal() );
 			}
 		};
 	}
