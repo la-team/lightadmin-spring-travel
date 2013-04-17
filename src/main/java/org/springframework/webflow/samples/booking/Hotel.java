@@ -1,9 +1,6 @@
 package org.springframework.webflow.samples.booking;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -32,6 +29,9 @@ public class Hotel implements Serializable {
 	@Column(precision = 6, scale = 2)
     private BigDecimal price;
 
+	@Lob
+	private byte[] picture;
+
     public Long getId() {
 	return id;
     }
@@ -40,7 +40,15 @@ public class Hotel implements Serializable {
 	this.id = id;
     }
 
-    public String getName() {
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture( final byte[] picture ) {
+		this.picture = picture;
+	}
+
+	public String getName() {
 	return name;
     }
 
