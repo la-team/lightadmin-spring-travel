@@ -1,14 +1,26 @@
 package org.springframework.webflow.samples.booking;
 
-import java.security.Principal;
-import java.util.List;
-
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.sax.BodyContentHandler;
+import org.apache.tika.sax.ContentHandlerDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.List;
+
+import static org.apache.commons.io.IOUtils.write;
 
 @Controller
 public class HotelsController {
@@ -47,4 +59,29 @@ public class HotelsController {
 	return "redirect:../hotels/search";
     }
 
+	@RequestMapping(value = "/hotels/{id}/picture", method = RequestMethod.GET)
+	public void hotelPicture( HttpServletResponse response, @PathVariable Long id ) throws IOException {
+		final Hotel hotel = bookingService.findHotelById( id );
+		final byte[] picture = hotel.getPicture();
+		if ( picture != null ) {
+			final MediaType mediaType = getMediaType( picture );
+			response.setContentLength( picture.length );
+			response.setContentType( mediaType.toString() );
+			write( picture, response.getOutputStream() );
+			response.flushBuffer();
+		}
+	}
+
+	private MediaType getMediaType( final byte[] bytes ) throws IOException {
+		ContentHandlerDecorator contentHandler = new BodyContentHandler();
+		Metadata metadata = new Metadata();
+		Parser parser = new AutoDetectParser();
+		try {
+			final ParseContext parseContext = new ParseContext();
+			parser.parse( new ByteArrayInputStream( bytes ), contentHandler, metadata, parseContext );
+			return MediaType.parseMediaType( metadata.get( "Content-Type" ) );
+		} catch ( Exception e ) {
+			return MediaType.IMAGE_JPEG;
+		}
+	}
 }

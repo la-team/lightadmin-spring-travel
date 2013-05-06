@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:tiles="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org"
@@ -9,34 +9,34 @@
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- This <head> section is only used for static prototyping purposes. At runtime, -->
-    <!-- Tiles will only use the body fragment defined with tiles:fragment="content",  --> 
+    <!-- Tiles will only use the body fragment defined with tiles:fragment="content",  -->
     <!-- as specified at the corresponding views.xml file.                             -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
     <title>Spring Travel: Spring MVC and Web Flow Reference Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <link rel="stylesheet" type="text/css" media="screen, projection" 
+
+    <link rel="stylesheet" type="text/css" media="screen, projection"
           href="../../styles/blueprint/screen.css" />
-    
-    <link rel="stylesheet" type="text/css" media="print" 
+
+    <link rel="stylesheet" type="text/css" media="print"
           href="../../styles/blueprint/print.css" />
-    
+
     <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" media="screen, projection"
               href="../../styles/blueprint/ie.css" />
     <![endif]-->
-    
-    <link rel="stylesheet" type="text/css" media="screen" 
+
+    <link rel="stylesheet" type="text/css" media="screen"
           href="../../styles/booking.css" />
 
-    
+
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
     <!-- runtime. Therefore not available for static prototyping. See the         -->
     <!-- layouts/standard.html template file for detail.                          -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
-    
+
 </head>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -52,7 +52,7 @@
 <h1>Hotel Results</h1>
 
 <p>
-    <a id="changeSearchLink" href="#" 
+    <a id="changeSearchLink" href="#"
        th:href="@{hotels/search(searchString=${searchCriteria.searchString},pageSize=${searchCriteria.pageSize})}">Change Search</a>
     <script type="text/javascript">
         // <![CDATA[
@@ -60,7 +60,7 @@
             elementId: "changeSearchLink",
             event: "onclick",
             popup: true,
-            params: {fragments: "searchForm"}       
+            params: {fragments: "searchForm"}
         }));
         // ]]>
     </script>
@@ -69,10 +69,11 @@
 <div id="hotelResults">
 
   <div th:if="${hotelList}">
-  
+
     <table class="summary">
         <thead>
             <tr>
+                <th>Picture</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>City, State</th>
@@ -82,6 +83,11 @@
         </thead>
         <tbody>
             <tr th:each="hotel : ${hotelList}">
+                <td>
+                    <a th:if="${hotel.picture != null}" href="#" th:href="@{'hotels/' + ${hotel.id}}">
+                        <img style="width: 100px;" src="#" th:src="@{'hotels/' + ${hotel.id} + '/picture'}"/>
+                    </a>
+                </td>
                 <td th:text="${hotel.name}">The Herb Plaza</td>
                 <td th:text="${hotel.address}">Thyme Square, 13</td>
                 <td th:text="${hotel.city} + ', ' + ${hotel.state} + ', ' + ${hotel.country}">Icetown, North Pole, Earth</td>
@@ -93,11 +99,11 @@
             </tr>
         </tbody>
     </table>
-    
+
     <div class="buttonGroup">
         <div class="span-3">
             <div th:if="${searchCriteria.page > 0}">
-                <a id="prevResultsLink" href="#" 
+                <a id="prevResultsLink" href="#"
                    th:href="@{hotels(searchString=${searchCriteria.searchString},pageSize=${searchCriteria.pageSize},page=${searchCriteria.page - 1})}">Previous Results</a>
                 <script type="text/javascript">
                     // <![CDATA[
@@ -112,23 +118,23 @@
         </div>
         <div class="span-3 append-12 last">
             <div th:if="${hotelList} and ${hotelList.size() == searchCriteria.pageSize}">
-                <a id="moreResultsLink" href="#" 
+                <a id="moreResultsLink" href="#"
                    th:href="@{hotels(searchString=${searchCriteria.searchString},pageSize=${searchCriteria.pageSize},page=${searchCriteria.page + 1})}">More Results</a>
                 <script type="text/javascript">
                     // <![CDATA[
                     Spring.addDecoration(new Spring.AjaxEventDecoration({
                         elementId: "moreResultsLink",
                         event: "onclick",
-                        params: {fragments: "body"}     
+                        params: {fragments: "body"}
                     }));
                     // ]]>
                 </script>
-            </div>      
+            </div>
         </div>
     </div>
   </div>
 
-</div>  
+</div>
 
 
 </body>

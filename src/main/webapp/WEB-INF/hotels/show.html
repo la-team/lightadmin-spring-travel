@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:tiles="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org"
@@ -9,34 +9,34 @@
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- This <head> section is only used for static prototyping purposes. At runtime, -->
-    <!-- Tiles will only use the body fragment defined with tiles:fragment="content",  --> 
+    <!-- Tiles will only use the body fragment defined with tiles:fragment="content",  -->
     <!-- as specified at the corresponding views.xml file.                             -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
     <title>Spring Travel: Spring MVC and Web Flow Reference Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <link rel="stylesheet" type="text/css" media="screen, projection" 
+
+    <link rel="stylesheet" type="text/css" media="screen, projection"
           href="../../styles/blueprint/screen.css" />
-    
-    <link rel="stylesheet" type="text/css" media="print" 
+
+    <link rel="stylesheet" type="text/css" media="print"
           href="../../styles/blueprint/print.css" />
-    
+
     <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" media="screen, projection"
               href="../../styles/blueprint/ie.css" />
     <![endif]-->
-    
-    <link rel="stylesheet" type="text/css" media="screen" 
+
+    <link rel="stylesheet" type="text/css" media="screen"
           href="../../styles/booking.css" />
 
-    
+
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
     <!-- runtime. Therefore not available for static prototyping. See the         -->
     <!-- layouts/standard.html template file for detail.                          -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
-    
+
 </head>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -50,12 +50,16 @@
 
 
 <h1 th:text="${hotel.name}">The Herb Plaza</h1>
-
+<div th:if="${hotel.picture != null}">
+    <br/>
+    <img style="width: 200px;" src="#" th:src="@{'/hotels/' + ${hotel.id} + '/picture'}"/>
+    <br/>
+</div>
 <address th:object="${hotel}">
     <span th:text="*{address}">Thyme Square, 13</span>
     <br />
-    <span th:text="*{city}">Icetown</span>, 
-    <span th:text="*{state}">North Pole</span>, 
+    <span th:text="*{city}">Icetown</span>,
+    <span th:text="*{state}">North Pole</span>,
     <span th:text="*{zip}">0W</span>
     <br />
     <span th:text="*{country}">Earth</span>

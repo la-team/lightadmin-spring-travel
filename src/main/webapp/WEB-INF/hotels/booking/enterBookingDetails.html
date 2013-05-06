@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:tiles="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org"
@@ -9,34 +9,34 @@
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- This <head> section is only used for static prototyping purposes. At runtime, -->
-    <!-- Tiles will only use the body fragment defined with tiles:fragment="content",  --> 
+    <!-- Tiles will only use the body fragment defined with tiles:fragment="content",  -->
     <!-- as specified at the corresponding views.xml file.                             -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
     <title>Spring Travel: Spring MVC and Web Flow Reference Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <link rel="stylesheet" type="text/css" media="screen, projection" 
+
+    <link rel="stylesheet" type="text/css" media="screen, projection"
           href="../../../styles/blueprint/screen.css" />
-    
-    <link rel="stylesheet" type="text/css" media="print" 
+
+    <link rel="stylesheet" type="text/css" media="print"
           href="../../../styles/blueprint/print.css" />
-    
+
     <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" media="screen, projection"
               href="../../../styles/blueprint/ie.css" />
     <![endif]-->
-    
-    <link rel="stylesheet" type="text/css" media="screen" 
+
+    <link rel="stylesheet" type="text/css" media="screen"
           href="../../../styles/booking.css" />
 
-    
+
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
     <!-- runtime. Therefore not available for static prototyping. See the         -->
     <!-- layouts/standard.html template file for detail.                          -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
-    
+
 </head>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -52,27 +52,31 @@
 <div id="bookingForm">
 
     <div class="span-5">
-    
+
         <h3 th:text="${booking.hotel.name}">The Herb Plaza</h3>
-        
+        <div th:if="${booking.hotel.picture != null}">
+            <br/>
+            <img style="width: 150px;" src="#" th:src="@{'/hotels/' + ${booking.hotel.id} + '/picture'}"/>
+            <br/>
+        </div>
         <address th:object="${booking.hotel}">
             <span th:text="*{address}">Thyme Square, 13</span>
             <br />
-            <span th:text="*{city}">Icetown</span>, 
-            <span th:text="*{state}">North Pole</span>, 
+            <span th:text="*{city}">Icetown</span>,
+            <span th:text="*{state}">North Pole</span>,
             <span th:text="*{zip}">0W</span>
             <br />
             <span th:text="*{country}">Earth</span>
         </address>
-        
+
         <p>
             Nightly rate: <span th:text="${booking.hotel.price}">400.00</span>
         </p>
-        
+
     </div>
-    
+
     <div class="span-12">
-    
+
         <form id="booking" action="#" th:object="${booking}" th:action="${flowExecutionUrl}" method="post">
 
             <div class="error" th:if="${#fields.hasErrors('*')}">
@@ -80,7 +84,7 @@
                   <span th:text="${err}">Input is incorrect</span><br />
                 </span>
             </div>
-        
+
             <fieldset>
                 <legend>Book Hotel</legend>
                 <div>
@@ -97,7 +101,7 @@
                                 widgetAttrs : { datePattern : "MM-dd-yyyy", required : true }}));
                             // ]]>
                         </script>
-                        
+
                     </div>
                 </div>
                 <div>
@@ -193,7 +197,7 @@
                             Spring.addDecoration(new Spring.ElementDecoration({
                                 elementId : "creditCard",
                                 widgetType : "dijit.form.ValidationTextBox",
-                                widgetAttrs : { required : true, invalidMessage : "A 16-digit credit card number is required.", 
+                                widgetAttrs : { required : true, invalidMessage : "A 16-digit credit card number is required.",
                                 regExp : "[0-9]{16}"  }}));
                             // ]]>
                         </script>
@@ -258,11 +262,11 @@
                     </script>
                 </div>
             </fieldset>
-            
+
         </form>
-            
+
     </div>
-    
+
 </div>
 
 
