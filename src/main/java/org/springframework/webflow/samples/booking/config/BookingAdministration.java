@@ -27,7 +27,7 @@ import static org.lightadmin.core.config.domain.scope.ScopeMetadataUtils.*;
 public class BookingAdministration {
 
 	public static EntityMetadataConfigurationUnit configuration( EntityMetadataConfigurationUnitBuilder configurationBuilder ) {
-		return configurationBuilder.nameExtractor( bookingNameExtractor() ).build();
+		return configurationBuilder.nameExtractor( bookingNameExtractor() ).pluralName( "Bookings" ).build();
 	}
 
 	public static ScopesConfigurationUnit scopes( final ScopesConfigurationUnitBuilder scopeBuilder ) {

@@ -11,7 +11,7 @@ import org.springframework.webflow.samples.booking.User;
 public class UserAdministration {
 
 	public static EntityMetadataConfigurationUnit configuration( EntityMetadataConfigurationUnitBuilder configurationBuilder ) {
-		return configurationBuilder.nameField( "name" ).build();
+		return configurationBuilder.nameField( "name" ).pluralName( "Customers" ).build();
 	}
 
 	public static FiltersConfigurationUnit filters( final FiltersConfigurationUnitBuilder filterBuilder ) {

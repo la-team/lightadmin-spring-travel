@@ -17,7 +17,7 @@ import static org.lightadmin.core.config.domain.scope.ScopeMetadataUtils.filter;
 public class HotelAdministration {
 
 	public static EntityMetadataConfigurationUnit configuration( EntityMetadataConfigurationUnitBuilder configurationBuilder ) {
-		return configurationBuilder.nameField( "name" ).build();
+		return configurationBuilder.nameField( "name" ).pluralName( "Hotels" ).build();
 	}
 
 	public static FiltersConfigurationUnit filters( final FiltersConfigurationUnitBuilder filterBuilder ) {
