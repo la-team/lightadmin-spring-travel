@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:tiles="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org"
@@ -9,35 +9,35 @@
 
     <title>Spring Travel: Spring MVC and Web Flow Reference Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <link rel="stylesheet" type="text/css" media="screen, projection" 
-          href="../../styles/blueprint/screen.css" 
+
+    <link rel="stylesheet" type="text/css" media="screen, projection"
+          href="../../styles/blueprint/screen.css"
           th:href="@{/resources/styles/blueprint/screen.css}" />
-    
-    <link rel="stylesheet" type="text/css" media="print" 
-          href="../../styles/blueprint/print.css" 
+
+    <link rel="stylesheet" type="text/css" media="print"
+          href="../../styles/blueprint/print.css"
           th:href="@{/resources/styles/blueprint/print.css}" />
-    
+
     <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" media="screen, projection"
-              href="../../styles/blueprint/ie.css" 
+              href="../../styles/blueprint/ie.css"
               th:href="@{/resources/styles/blueprint/ie.css}" />
     <![endif]-->
-    
-    <link rel="stylesheet" type="text/css" media="screen" 
-          href="../../styles/booking.css" 
+
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="../../styles/booking.css"
           th:href="@{/resources/styles/booking.css}" />
 
-    
+
     <!-- The following styles and scripts are served from spring-js-resources-{ver}.jar -->
-    
-    <link rel="stylesheet" type="text/css" 
+
+    <link rel="stylesheet" type="text/css"
           href="#" th:href="@{/resources/dijit/themes/tundra/tundra.css}" />
-    
+
     <script type="text/javascript" src="#" th:src="@{/resources/dojo/dojo.js}"></script>
     <script type="text/javascript" src="#" th:src="@{/resources/spring/Spring.js}"></script>
     <script type="text/javascript" src="#" th:src="@{/resources/spring/Spring-Dojo.js}"></script>
-    
+
 </head>
 
 
@@ -48,11 +48,13 @@
     <div id="header">
         <div id="topbar">
             <p sec:authorize="hasRole('ROLE_USER')" th:if="${#authentication}">
-                Welcome, <span sec:authentication="name">Dear User</span> |
-                <a href="#" th:href="@{/logout}">Logout</a>
+                <span style="float:left;">Welcome, <span sec:authentication="name">Dear User</span> |
+                <a href="#" th:href="@{/logout}">Logout</a></span>
+                <a href="#" th:href="@{/admin}" style="float:right;">Administration</a>
             </p>
             <p sec:authorize="hasRole('ROLE_ANONYMOUS')">
-                <a href="#" th:href="@{/login}">Login</a>
+                <a href="#" th:href="@{/login}" style="float:left;">Login</a>
+                <a href="#" th:href="@{/admin}" style="float:right;">Administration</a>
             </p>
         </div>
         <div id="logo">
@@ -63,7 +65,7 @@
             </p>
         </div>
     </div>
-    
+
     <div id="content">
         <div id="local" class="span-6">
             <p>
@@ -79,25 +81,25 @@
         </div>
         <div id="main" class="span-18 last" tiles:include="body">
 
-          <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->      
+          <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
           <!-- At runtime, the body of this <div> will be substituted by -->
           <!-- Tiles in order to create the final HTML page that will be -->
           <!-- sent to the browser.                                      -->
-          <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->      
-          
+          <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
           BODY PAGE GOES HERE!
-          
+
         </div>
     </div>
-    
+
     <hr />
-    
+
     <div id="footer">
         <a href="http://www.springframework.org">
             <img src="../../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
         </a>
     </div>
-    
+
 </div>
 </body>
 </html>
