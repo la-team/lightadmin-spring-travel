@@ -2,6 +2,7 @@ package org.springframework.webflow.samples.booking.config;
 
 import org.lightadmin.core.config.annotation.Administration;
 import org.lightadmin.core.config.domain.common.FieldSetConfigurationUnitBuilder;
+import org.lightadmin.core.config.domain.common.PersistentFieldSetConfigurationUnitBuilder;
 import org.lightadmin.core.config.domain.configuration.EntityMetadataConfigurationUnit;
 import org.lightadmin.core.config.domain.configuration.EntityMetadataConfigurationUnitBuilder;
 import org.lightadmin.core.config.domain.configuration.support.EntityNameExtractor;
@@ -22,6 +23,7 @@ import javax.persistence.criteria.Root;
 
 import static java.lang.String.format;
 import static org.lightadmin.core.config.domain.scope.ScopeMetadataUtils.*;
+import static org.lightadmin.core.config.domain.common.EnumElement.element;
 
 @Administration( Booking.class )
 public class BookingAdministration {
@@ -56,6 +58,21 @@ public class BookingAdministration {
 			.renderable( totalValueRenderer() ).caption( "Total" )
 			.dynamic( "description" ).caption( "Description" )
 			.build();
+	}
+
+	public static FieldSetConfigurationUnit formView(final PersistentFieldSetConfigurationUnitBuilder fragmentBuilder) {
+		return fragmentBuilder
+				.field( "user" ).caption( "Customer" )
+				.field( "hotel" ).caption( "Hotel" )
+				.field( "checkinDate" ).caption( "Check-In Date" )
+				.field( "checkoutDate" ).caption( "Check-Out Date" )
+				.field( "smoking" ).caption( "Smoking" )
+				.field( "beds" ).caption( "Beds" ).enumeration(
+						element( 1, "One king-size bed" ),
+						element( 2, "Two double beds" ),
+						element( 3, "Three beds" )
+						)
+				.build();
 	}
 
 	public static DomainTypePredicate<Booking> longTermBookingPredicate() {
