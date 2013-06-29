@@ -34,44 +34,67 @@ public class BookingAdministration {
 
 	public static ScopesConfigurationUnit scopes( final ScopesConfigurationUnitBuilder scopeBuilder ) {
 		return scopeBuilder
-			.scope( "All", all() ).defaultScope()
-			.scope( "Smoking Apartments", specification( smokingApartmentsSpec( true ) ) )
-			.scope( "Non Smoking Apartments", specification( smokingApartmentsSpec( false ) ) )
-			.scope( "Long-term bookings", filter( longTermBookingPredicate() ) ).build();
+				.scope( "All", all() ).defaultScope()
+				.scope( "Smoking Apartments", specification( smokingApartmentsSpec( true ) ) )
+				.scope( "Non Smoking Apartments", specification( smokingApartmentsSpec( false ) ) )
+				.scope( "Long-term bookings", filter( longTermBookingPredicate() ) ).build();
 	}
 
 	public static FiltersConfigurationUnit filters( final FiltersConfigurationUnitBuilder filterBuilder ) {
 		return filterBuilder
-			.filter( "Customer", "user" )
-			.filter( "Booked Hotel", "hotel" )
-			.filter( "Check-In Date", "checkinDate" ).build();
+				.filter( "Customer", "user" )
+				.filter( "Booked Hotel", "hotel" )
+				.filter( "Check-In Date", "checkinDate" ).build();
 	}
 
 	public static FieldSetConfigurationUnit listView( final FieldSetConfigurationUnitBuilder fragmentBuilder ) {
 		return fragmentBuilder
-			.field( "user" ).caption( "Customer" )
-			.field( "hotel" ).caption( "Hotel" )
-			.field( "checkinDate" ).caption( "Check-In Date" )
-			.dynamic( "nights" ).caption( "Nights" )
-			.field( "smoking" ).caption( "Smoking" )
-			.field( "beds" ).caption( "Beds" )
-			.renderable( totalValueRenderer() ).caption( "Total" )
-			.dynamic( "description" ).caption( "Description" )
-			.build();
+				.field( "user" ).caption( "Customer" )
+				.field( "user" ).caption( "Customer" )
+				.field( "hotel" ).caption( "Hotel" )
+				.field( "checkinDate" ).caption( "Check-In Date" )
+				.dynamic( "nights" ).caption( "Nights" )
+				.field( "smoking" ).caption( "Smoking" )
+				.field( "beds" ).caption( "Beds" )
+				.renderable( totalValueRenderer() ).caption( "Total" )
+				.dynamic( "description" ).caption( "Description" )
+				.field( "beds" ).caption( "Beds" )
+				.build();
 	}
 
-	public static FieldSetConfigurationUnit formView(final PersistentFieldSetConfigurationUnitBuilder fragmentBuilder) {
+	public static FieldSetConfigurationUnit formView( final PersistentFieldSetConfigurationUnitBuilder fragmentBuilder ) {
 		return fragmentBuilder
 				.field( "user" ).caption( "Customer" )
 				.field( "hotel" ).caption( "Hotel" )
 				.field( "checkinDate" ).caption( "Check-In Date" )
 				.field( "checkoutDate" ).caption( "Check-Out Date" )
-				.field( "smoking" ).caption( "Smoking" )
 				.field( "beds" ).caption( "Beds" ).enumeration(
 						element( 1, "One king-size bed" ),
 						element( 2, "Two double beds" ),
 						element( 3, "Three beds" )
-						)
+				)
+				.field( "smoking" ).caption( "Smoking" )
+				.field( "creditCard" ).caption( "Card Number" )
+				.field( "creditCardName" ).caption( "Card Name" )
+				.field( "creditCardExpiryMonth" ).caption( "Card Expiry Month" ).enumeration(
+						element( 1, "Jan" ),
+						element( 2, "Feb" ),
+						element( 3, "Mar" ),
+						element( 4, "Apr" ),
+						element( 5, "May" ),
+						element( 6, "Jun" ),
+						element( 7, "Jul" ),
+						element( 8, "Aug" ),
+						element( 9, "Sep" ),
+						element( 10, "Oct" ),
+						element( 11, "Nov" ),
+						element( 12, "Dec" ) )
+				.field( "creditCardExpiryYear" ).caption( "Card Expiry Year" ).enumeration(
+						element( 1, "2008" ),
+						element( 2, "2009" ),
+						element( 3, "2010" ),
+						element( 4, "2011" ),
+						element( 5, "2012" ) )
 				.build();
 	}
 
