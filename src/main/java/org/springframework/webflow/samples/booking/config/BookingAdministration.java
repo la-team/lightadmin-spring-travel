@@ -50,7 +50,6 @@ public class BookingAdministration {
 	public static FieldSetConfigurationUnit listView( final FieldSetConfigurationUnitBuilder fragmentBuilder ) {
 		return fragmentBuilder
 				.field( "user" ).caption( "Customer" )
-				.field( "user" ).caption( "Customer" )
 				.field( "hotel" ).caption( "Hotel" )
 				.field( "checkinDate" ).caption( "Check-In Date" )
 				.dynamic( "nights" ).caption( "Nights" )
