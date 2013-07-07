@@ -18,6 +18,11 @@
 		<param-value>true</param-value>
 	</context-param>
 
+    <!--<context-param>-->
+        <!--<param-name>light:administration:security-logout-url</param-name>-->
+        <!--<param-value>/logout</param-value>-->
+    <!--</context-param>-->
+
 	<!-- The master configuration file for this Spring web application -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

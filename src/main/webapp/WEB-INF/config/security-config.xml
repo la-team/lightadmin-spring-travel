@@ -11,6 +11,7 @@
 		<security:form-login login-page="/login" login-processing-url="/loginProcess"
 			default-target-url="/hotels/search" authentication-failure-url="/login?login_error=1" />
 		<security:logout logout-url="/logout" logout-success-url="/logoutSuccess" invalidate-session="true"/>
+        <security:access-denied-handler error-page="/access-denied"/>
 	</security:http>
 
 	<!--
