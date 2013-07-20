@@ -33,8 +33,8 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/booking" />
         <property name="username" value="root" />
-        <property name="password" value="" />
-        <!--<property name="password" value="sun1ssh1n1ng" />-->
+        <!--<property name="password" value="" />-->
+        <property name="password" value="sun1ssh1n1ng" />
     </bean>
 
     <jdbc:initialize-database data-source="dataSource" enabled="true" ignore-failures="ALL">
