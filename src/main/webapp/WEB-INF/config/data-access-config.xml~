@@ -31,7 +31,7 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/booking?createDatabaseIfNotExist=true" />
+        <property name="url" value="jdbc:mysql://localhost:3306/booking" />
         <property name="username" value="root" />
         <!--<property name="password" value="" />-->
         <property name="password" value="sun1ssh1n1ng" />
